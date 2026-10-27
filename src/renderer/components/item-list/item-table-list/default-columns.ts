@@ -70,7 +70,7 @@ export const SONG_TABLE_COLUMNS: DefaultTableColumn[] = [
     {
         align: 'center',
         autoSize: false,
-        isEnabled: true,
+        isEnabled: false,
         label: i18n.t('table.config.label.duration'),
         pinned: null,
         value: TableColumn.DURATION,
@@ -124,7 +124,7 @@ export const SONG_TABLE_COLUMNS: DefaultTableColumn[] = [
     {
         align: 'start',
         autoSize: false,
-        isEnabled: true,
+        isEnabled: false,
         label: i18n.t('table.config.label.genre'),
         pinned: null,
         value: TableColumn.GENRE,
@@ -142,7 +142,7 @@ export const SONG_TABLE_COLUMNS: DefaultTableColumn[] = [
     {
         align: 'center',
         autoSize: false,
-        isEnabled: true,
+        isEnabled: false,
         label: i18n.t('table.config.label.year'),
         pinned: null,
         value: TableColumn.YEAR,
@@ -295,7 +295,7 @@ export const SONG_TABLE_COLUMNS: DefaultTableColumn[] = [
     {
         align: 'center',
         autoSize: false,
-        isEnabled: true,
+        isEnabled: false,
         label: i18n.t('table.config.label.favorite'),
         pinned: null,
         value: TableColumn.USER_FAVORITE,

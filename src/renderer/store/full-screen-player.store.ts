@@ -42,7 +42,7 @@ export const useFullScreenPlayerStore = createWithEqualityFn<FullScreenPlayerSli
                 },
                 activeTab: '',
                 coverArtSize: 75,
-                dynamicBackground: true,
+                dynamicBackground: false,
                 dynamicImageBlur: 6,
                 dynamicIsImage: false,
                 expanded: false,

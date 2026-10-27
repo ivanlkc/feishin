@@ -12,6 +12,10 @@ RUN pnpm install
 
 # Copy code and build with cached modules
 COPY . .
+
+# Avoid OOM
+ENV NODE_OPTIONS=--max-old-space-size=4096
+
 RUN pnpm run build:web
 
 # --- Production stage
