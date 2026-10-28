@@ -25,6 +25,8 @@ export const CacheSettings = memo(() => {
 
             try {
                 queryClient.clear();
+		localStorage.clear();
+		window.location.reload();
 
                 if (full && browser) {
                     await browser.clearCache();

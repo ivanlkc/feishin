@@ -392,12 +392,6 @@ export const PlaylistRowButton = memo(
                                             {item.songCount || 0}
                                         </Text>
                                     </div>
-                                    <div className={styles.metadataGroupItem}>
-                                        <Icon color="muted" icon="duration" size="sm" />
-                                        <Text isMuted size="sm">
-                                            {formatDurationString(item.duration ?? 0)}
-                                        </Text>
-                                    </div>
                                     {item.ownerId === permissions.userId &&
                                         Boolean(item.public) && (
                                             <div className={styles.metadataGroupItem}>
@@ -616,18 +610,6 @@ export const SidebarPlaylistList = () => {
                         </Text>
                     </Group>
                     <Group gap="xs" wrap="nowrap">
-                        <ActionIcon
-                            icon="add"
-                            iconProps={{
-                                size: 'lg',
-                            }}
-                            onClick={handleCreatePlaylistModal}
-                            size="xs"
-                            tooltip={{
-                                label: t('action.createPlaylist'),
-                            }}
-                            variant="subtle"
-                        />
                         {showExpandAll && (
                             <ActionIcon
                                 icon={allExpanded ? 'collapseAll' : 'expandAll'}
@@ -768,24 +750,6 @@ export const CollapsedSidebarPlaylistList = () => {
                         {t('page.sidebar.playlists')}
                     </Text>
                 </Link>
-                <Group gap="xs" justify="center" wrap="nowrap">
-                    <ActionIcon
-                        icon={isOpen ? 'arrowUpS' : 'arrowDownS'}
-                        iconProps={{ size: 'lg' }}
-                        onClick={() => setIsOpen((open) => !open)}
-                        size="xs"
-                        tooltip={{ label: t(isOpen ? 'common.collapse' : 'common.expand') }}
-                        variant="subtle"
-                    />
-                    <ActionIcon
-                        icon="add"
-                        iconProps={{ size: 'lg' }}
-                        onClick={(e) => openCreatePlaylistModal(server, e)}
-                        size="xs"
-                        tooltip={{ label: t('action.createPlaylist') }}
-                        variant="subtle"
-                    />
-                </Group>
                 {isOpen && (
                     <>
                         {owned.items?.map((item) => (

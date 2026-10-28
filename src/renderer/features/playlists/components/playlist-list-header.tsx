@@ -25,7 +25,6 @@ export const PlaylistListHeader = ({ title }: PlaylistListHeaderProps) => {
         <Stack gap={0}>
             <PageHeader>
                 <LibraryHeaderBar ignoreMaxWidth>
-                    <PlayButton />
                     <LibraryHeaderBar.Title>{pageTitle}</LibraryHeaderBar.Title>
                     <PlaylistListHeaderBadge />
                 </LibraryHeaderBar>

@@ -367,7 +367,7 @@ export const LibraryHeaderMenu = ({
 
     const handlePlayNow = usePlayButtonClick({
         onClick: () => {
-            onPlay?.(Play.NOW);
+            onPlay?.(Play.SHUFFLE);
         },
         onLongPress: () => {
             onPlay?.(LONG_PRESS_PLAY_BEHAVIOR[Play.NOW]);
@@ -396,12 +396,12 @@ export const LibraryHeaderMenu = ({
         <div className={styles.libraryHeaderMenu}>
             <Group wrap="nowrap">
                 {onPlay && <PlayTextButton {...handlePlayNow.handlers} {...handlePlayNow.props} />}
-                {onPlay && (
+                {/*onPlay && (
                     <PlayNextTextButton {...handlePlayNext.handlers} {...handlePlayNext.props} />
-                )}
-                {onPlay && (
+                )*/}
+                {/*onPlay && (
                     <PlayLastTextButton {...handlePlayLast.handlers} {...handlePlayLast.props} />
-                )}
+                )*/}
                 {onAlbumRadio && (
                     <ActionIcon
                         disabled={isPlayerFetching}

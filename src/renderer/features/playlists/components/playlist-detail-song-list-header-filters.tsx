@@ -201,7 +201,6 @@ export const PlaylistDetailSongListHeaderFilters = ({
                 <Divider orientation="vertical" />
                 <PlaylistSongListFiltersModal />
                 <ListRefreshButton disabled={isEditMode} listKey={listKey} />
-                <MoreButton onClick={handleMore} />
             </Group>
             <Group gap="sm" wrap="nowrap">
                 {isViewEditMode &&
@@ -210,7 +209,7 @@ export const PlaylistDetailSongListHeaderFilters = ({
                     ) : (
                         <SaveAndReplaceButton mode={mode} songIds={tracks} />
                     ))}
-                {isViewEditMode && (
+                {/*isViewEditMode && (
                     <Button
                         onClick={() => setMode?.(mode === 'edit' ? 'view' : 'edit')}
                         uppercase
@@ -218,7 +217,7 @@ export const PlaylistDetailSongListHeaderFilters = ({
                     >
                         {mode === 'edit' ? t('common.cancel') : t('common.edit')}
                     </Button>
-                )}
+                )*/}
                 <Tooltip label={t(`common.${collapsed ? 'expand' : 'collapse'}`, {})}>
                     <ActionIcon
                         icon={collapsed ? 'arrowDownS' : 'arrowUpS'}

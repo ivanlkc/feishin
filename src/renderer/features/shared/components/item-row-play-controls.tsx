@@ -28,7 +28,7 @@ export const ItemRowPlayControls = ({ className, disabled, onPlay }: ItemRowPlay
 
     const handlePlayNow = usePlayButtonClick({
         onClick: () => {
-            onPlay(Play.NOW);
+            onPlay(Play.SHUFFLE);
         },
         onLongPress: () => {
             onPlay(LONG_PRESS_PLAY_BEHAVIOR[Play.NOW]);
@@ -46,7 +46,7 @@ export const ItemRowPlayControls = ({ className, disabled, onPlay }: ItemRowPlay
 
     return (
         <ActionIconGroup className={clsx(styles.controls, className)}>
-            <PlayTooltip disabled={disabled} type={Play.NOW}>
+            <PlayTooltip disabled={disabled} type={Play.SHUFFLE}>
                 <ActionIcon
                     icon="mediaPlay"
                     iconProps={{
@@ -56,32 +56,6 @@ export const ItemRowPlayControls = ({ className, disabled, onPlay }: ItemRowPlay
                     variant="subtle"
                     {...handlePlayNow.handlers}
                     {...handlePlayNow.props}
-                    disabled={disabled}
-                />
-            </PlayTooltip>
-            <PlayTooltip disabled={disabled} type={Play.NEXT}>
-                <ActionIcon
-                    icon="mediaPlayNext"
-                    iconProps={{
-                        size: 'md',
-                    }}
-                    size="xs"
-                    variant="subtle"
-                    {...handlePlayNext.handlers}
-                    {...handlePlayNext.props}
-                    disabled={disabled}
-                />
-            </PlayTooltip>
-            <PlayTooltip disabled={disabled} type={Play.LAST}>
-                <ActionIcon
-                    icon="mediaPlayLast"
-                    iconProps={{
-                        size: 'md',
-                    }}
-                    size="xs"
-                    variant="subtle"
-                    {...handlePlayLast.handlers}
-                    {...handlePlayLast.props}
                     disabled={disabled}
                 />
             </PlayTooltip>

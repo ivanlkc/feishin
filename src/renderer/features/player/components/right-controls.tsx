@@ -93,15 +93,11 @@ export const RightControls = () => {
         <Flex align="flex-end" direction="column" h="100%" px="1rem" py="0.5rem">
             <Group h="calc(100% / 3)">
                 {showRatings && <RatingButton />}
-                <AutoDJButton />
             </Group>
             <Group align="center" gap="xs" wrap="nowrap">
                 <DlnaCastButton />
-                <SleepTimerButton />
-                <PlayerConfig />
                 <LyricsButton />
                 {showFavorites && <FavoriteButton />}
-                <QueueButton />
                 {playbackType === PlayerType.DLNA ? <DlnaVolumeButton /> : <VolumeButton />}
             </Group>
             <Group h="calc(100% / 3)" />

@@ -54,15 +54,12 @@ export const CenterControls = () => {
         <>
             <div className={styles.controlsContainer}>
                 <div className={styles.buttonsContainer}>
-                    <StopButton />
-                    <ShuffleButton />
                     <PreviousButton />
                     {skip?.enabled && <SkipBackwardButton />}
                     <CenterPlayButton />
                     {skip?.enabled && <SkipForwardButton />}
                     <NextButton />
                     <RepeatButton />
-                    <ShuffleAllButton />
                 </div>
             </div>
             <PlayerbarSlider />

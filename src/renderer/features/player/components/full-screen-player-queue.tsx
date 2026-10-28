@@ -84,7 +84,7 @@ const Controls = () => {
                 label: t('page.fullscreenPlayer.upNext'),
                 onClick: () => toggleTab('queue'),
             },
-            {
+            /*{
                 active: activeTab === 'related',
                 icon: 'related',
                 label: t('page.fullscreenPlayer.related'),
@@ -95,17 +95,17 @@ const Controls = () => {
                 icon: 'microphone',
                 label: t('page.fullscreenPlayer.lyrics'),
                 onClick: () => toggleTab('lyrics'),
-            },
+            },*/
         ];
 
-        if (webAudio) {
+        /*if (webAudio) {
             items.push({
                 active: activeTab === 'visualizer',
                 icon: 'audioLines',
                 label: t('page.fullscreenPlayer.visualizer'),
                 onClick: () => toggleTab('visualizer'),
             });
-        }
+        }*/
 
         return items;
         // eslint-disable-next-line react-hooks/exhaustive-deps

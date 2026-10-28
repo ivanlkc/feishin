@@ -41,9 +41,6 @@ export const PlaylistListHeaderFilters = () => {
                 <ListRefreshButton listKey={ItemListKey.PLAYLIST} />
             </Group>
             <Group gap="sm" wrap="nowrap">
-                <Button onClick={handleCreatePlaylistModal} variant="subtle">
-                    {t('action.createPlaylist')}
-                </Button>
                 <ListDisplayTypeToggleButton listKey={ItemListKey.PLAYLIST} />
                 <ListConfigMenu
                     listKey={ItemListKey.PLAYLIST}

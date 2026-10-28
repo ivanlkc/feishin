@@ -484,7 +484,7 @@ const initialState: State = {
         muted: false,
         pauseOnNextSongEnd: false,
         playerNum: 1,
-        repeat: PlayerRepeat.NONE,
+        repeat: PlayerRepeat.ALL,
         shuffle: PlayerShuffle.NONE,
         speed: 1,
         status: PlayerStatus.PAUSED,
