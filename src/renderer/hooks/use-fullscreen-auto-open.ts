@@ -41,7 +41,7 @@ export const useFullscreenAutoOpen = () => {
             return;
         }
 
-        const timeoutMs = timeoutMinutes * 60 * 1000;
+        const timeoutMs = timeoutMinutes * 1000;
 
         const resetTimer = () => {
             if (timerRef.current) {

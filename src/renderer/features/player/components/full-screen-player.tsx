@@ -30,9 +30,13 @@ import {
     useFullScreenPlayerStoreActions,
     usePlayerData,
     usePlayerSong,
+    usePlayerStatus,
 } from '/@/renderer/store';
 import { Group } from '/@/shared/components/group/group';
 import { LibraryItem } from '/@/shared/types/domain-types';
+import { MainPlayButton } from '/@/renderer/features/player/components/player-button';
+import { usePlayer } from '/@/renderer/features/player/context/player-context';
+import { PlayerStatus } from '/@/shared/types/types';
 
 const mainBackground = 'var(--theme-colors-background)';
 
@@ -322,6 +326,10 @@ export const FullScreenPlayer = () => {
     const isRadioActive = useIsRadioActive();
     const { isPlaying: isRadioPlaying } = useRadioPlayer();
 
+    const status = usePlayerStatus();
+    const currentSong = usePlayerSong();
+    const { mediaTogglePlayPause } = usePlayer();
+
     const isPlayingRadio = isRadioActive && isRadioPlaying;
     const effectiveDynamicBackground = dynamicBackground && !isPlayingRadio;
 
@@ -353,6 +361,13 @@ export const FullScreenPlayer = () => {
                     top: 0,
                 }}
             >
+	        <MainPlayButton
+		    disabled={!currentSong}
+		    iconProps={{ size: 44 }}
+		    isPaused={status !== PlayerStatus.PLAYING}
+		    onClick={mediaTogglePlayPause}
+		    size={80}
+		/>
                 <SharedFullscreenPlayerSettings />
             </Group>
             <BackgroundImageOverlay

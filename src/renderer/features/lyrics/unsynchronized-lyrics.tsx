@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import styles from './unsynchronized-lyrics.module.css';
 
 import { LyricsScrollContent } from '/@/renderer/features/lyrics/components/lyrics-scroll-content';
 import { LyricLine } from '/@/renderer/features/lyrics/lyric-line';
-import { useLyricsDisplaySettings, useLyricsSettings } from '/@/renderer/store';
+import { useLyricsDisplaySettings, useLyricsSettings, usePlayerStoreBase } from '/@/renderer/store';
+import { subscribePlayerProgress, useTimestampStoreBase } from '/@/renderer/store/timestamp.store';
 import { FullLyricsMetadata } from '/@/shared/types/domain-types';
 
 export interface UnsynchronizedLyricsProps extends Omit<FullLyricsMetadata, 'lyrics'> {
@@ -56,8 +57,38 @@ export const UnsynchronizedLyrics = ({
         return romajiLyrics ? romajiLyrics.split('\n') : [];
     }, [romajiLyrics]);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+    const manualScrollUntilRef = useRef(0);
+    const pauseAutoScroll = () => {
+	manualScrollUntilRef.current = Date.now() + 5000;
+    };
+
+    useEffect(() => {
+	if (preview) return undefined;
+
+	const scrollToProgress = (timestampSec: number) => {
+	    const el = containerRef.current;
+	    if (!el || Date.now() < manualScrollUntilRef.current) return;
+
+	    const durationMs = usePlayerStoreBase.getState().getCurrentSong()?.duration;
+	    if (!durationMs) return;
+
+	    const ratio = Math.min(1, Math.max(0, (timestampSec * 1000) / durationMs));
+	    el.scrollTop = ratio * (el.scrollHeight - el.clientHeight);
+	};
+
+	scrollToProgress(useTimestampStoreBase.getState().timestamp);
+
+	return subscribePlayerProgress(({ timestamp }) => scrollToProgress(timestamp));
+    }, [preview, lines]);
+
     return (
-        <div className={clsx(styles.container, preview && styles.preview)}>
+        <div
+	    className={clsx(styles.container, preview && styles.preview)}
+	    onTouchMove={pauseAutoScroll}
+	    onWheel={pauseAutoScroll}
+	    ref={containerRef}
+	>
             <LyricsScrollContent
                 bottomScrollPadding="6vh"
                 gap={settings.gapUnsync}

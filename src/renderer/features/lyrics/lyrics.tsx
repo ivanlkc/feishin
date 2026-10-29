@@ -571,28 +571,6 @@ export const Lyrics = ({ fadeOutNoLyricsMessage = true, settingsKey = 'default' 
                         )}
                     </AnimatePresence>
                 )}
-                <div className={styles.actionsContainer}>
-                    <LyricsActions
-                        hasLyrics={!!displayLyrics}
-                        index={indexToUse}
-                        languages={languages}
-                        offsetMs={displayOffsetMs}
-                        onExportLyrics={handleExportLyrics}
-                        onRemoveLyric={handleOnRemoveLyric}
-                        onSearchOverride={handleOnSearchOverride}
-                        onToggleOverlayLayer={handleToggleOverlayLayer}
-                        onTranslateLyric={
-                            translationApiProvider && translationApiKey
-                                ? handleOnTranslateLyric
-                                : undefined
-                        }
-                        onUpdateOffset={handleUpdateOffset}
-                        overlayLayers={overlayLayerToggles}
-                        setIndex={setIndex}
-                        settingsKey={settingsKey}
-                        visibleOverlayKeys={visibleOverlayKeys}
-                    />
-                </div>
             </div>
         </ComponentErrorBoundary>
     );

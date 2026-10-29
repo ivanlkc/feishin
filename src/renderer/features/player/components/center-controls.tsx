@@ -59,7 +59,6 @@ export const CenterControls = () => {
                     <CenterPlayButton />
                     {skip?.enabled && <SkipForwardButton />}
                     <NextButton />
-                    <RepeatButton />
                 </div>
             </div>
             <PlayerbarSlider />

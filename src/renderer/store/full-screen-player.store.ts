@@ -40,7 +40,7 @@ export const useFullScreenPlayerStore = createWithEqualityFn<FullScreenPlayerSli
                         set({ ...get(), ...data });
                     },
                 },
-                activeTab: '',
+                activeTab: 'lyrics',
                 coverArtSize: 75,
                 dynamicBackground: false,
                 dynamicImageBlur: 6,
