@@ -1165,7 +1165,7 @@ export const playerItems: SortableItem<PlayerItem>[] = [
 
 export const sidebarItems: SidebarItemType[] = [
     {
-        disabled: true,
+        disabled: false,
         id: 'Now Playing',
         label: i18n.t('page.sidebar.nowPlaying'),
         route: AppRoute.NOW_PLAYING,
@@ -1176,7 +1176,7 @@ export const sidebarItems: SidebarItemType[] = [
         label: i18n.t('page.sidebar.search'),
         route: generatePath(AppRoute.SEARCH, { itemType: LibraryItem.SONG }),
     },
-    { disabled: true, id: 'Home', label: i18n.t('page.sidebar.home'), route: AppRoute.HOME },
+    { disabled: false, id: 'Home', label: i18n.t('page.sidebar.home'), route: AppRoute.HOME },
     {
         disabled: true,
         id: 'Favorites',

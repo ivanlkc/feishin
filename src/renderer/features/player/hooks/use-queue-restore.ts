@@ -159,6 +159,11 @@ export const useSaveQueue = () => {
             const state = usePlayerStore.getState();
             const queue = state.getQueue();
 
+	    // Prevent overwriting server's saved queue with empty ones
+	    if (queue.items.length === 0) {
+		return;
+	    }
+
             if (queue.items.some((item) => item._serverId !== serverId)) {
                 toast.error({
                     message: t('error.multipleServerSaveQueueError'),

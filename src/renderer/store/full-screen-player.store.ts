@@ -45,7 +45,7 @@ export const useFullScreenPlayerStore = createWithEqualityFn<FullScreenPlayerSli
                 dynamicBackground: false,
                 dynamicImageBlur: 6,
                 dynamicIsImage: false,
-                expanded: false,
+                expanded: true,
                 opacity: 25,
                 playerItemAlignment: 'center',
                 titleDisplayType: 'scroll',

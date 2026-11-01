@@ -428,6 +428,68 @@ export function WebPlayer() {
         return () => clearInterval(interval);
     }, [status, num, setTimestamp, transitionType]);
 
+    // attempt to restart the play upon stuck
+    useEffect(() => {
+	if (status !== PlayerStatus.PLAYING) return undefined;
+
+	const STALL_MS = 3000;
+	const MAX_RELOADS = 10;
+	let lastTime = -1;
+	let stuckSince = 0;
+	let reloads = 0;
+
+	const interval = setInterval(() => {
+	    const active = num === 1 ? playerRef.current?.player1() : playerRef.current?.player2();
+	    const el = active?.ref?.getInternalPlayer() as HTMLAudioElement | null | undefined;
+	    if (!el || !el.src || el.src.startsWith('data:')) return;
+
+	    if (el.currentTime !== lastTime) {
+		lastTime = el.currentTime;
+		stuckSince = 0;
+		return;
+	    }
+
+	    if (el.paused || el.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+		stuckSince = 0;
+		return;
+	    }
+
+	    if (!stuckSince) {
+		stuckSince = Date.now();
+		return;
+	    }
+	    if (Date.now() - stuckSince < STALL_MS) return;
+	    stuckSince = 0;
+
+	    if (reloads >= MAX_RELOADS) {
+		if (reloads === MAX_RELOADS) {
+		    reloads += 1;
+		    toast.error({
+			autoClose: false,
+			message: 'Stalled',
+		    });
+	        }
+		return;
+	    }
+
+	    reloads += 1;
+	    const resumeAt = el.currentTime;
+
+	    el.addEventListener(
+		'loadedmetadata',
+		() => {
+		    if (resumeAt > 1) el.currentTime = resumeAt;
+		},
+		{ once: true },
+	    );
+	    el.load();
+	    el.play().catch(() => {});
+        }, 1000);
+
+	return () => clearInterval(interval);
+
+    }, [num, status]);
+
     useEffect(() => {
         if (status !== PlayerStatus.PLAYING || localPlayerStatus === PlayerStatus.PLAYING) {
             return;

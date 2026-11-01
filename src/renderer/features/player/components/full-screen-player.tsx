@@ -37,6 +37,10 @@ import { LibraryItem } from '/@/shared/types/domain-types';
 import { MainPlayButton } from '/@/renderer/features/player/components/player-button';
 import { usePlayer } from '/@/renderer/features/player/context/player-context';
 import { PlayerStatus } from '/@/shared/types/types';
+import { ActionIcon } from '/@/shared/components/action-icon/action-icon';
+import { useIsFetching } from '@tanstack/react-query';
+import { queryKeys } from '/@/renderer/api/query-keys';
+import { useRestoreQueue } from '/@/renderer/features/player/hooks/use-queue-restore';
 
 const mainBackground = 'var(--theme-colors-background)';
 
@@ -336,6 +340,10 @@ export const FullScreenPlayer = () => {
     const location = useLocation();
     const isOpenedRef = useRef<boolean | null>(null);
 
+    const isFetching = useIsFetching({ queryKey: queryKeys.player.fetch({ type: 'queue' }) });
+    const handleRestoreQueue = useRestoreQueue();
+    const isRestoreBusy = Boolean(isFetching);
+
     useLayoutEffect(() => {
         if (isOpenedRef.current !== null) {
             setStore({ expanded: false });
@@ -362,10 +370,17 @@ export const FullScreenPlayer = () => {
                 }}
             >
 	        <MainPlayButton
-		    disabled={!currentSong}
+		    disabled={isRestoreBusy}
 		    iconProps={{ size: 44 }}
 		    isPaused={status !== PlayerStatus.PLAYING}
-		    onClick={mediaTogglePlayPause}
+		    onClick={(event) => {
+			if (currentSong) {
+			    mediaTogglePlayPause();
+			} else {
+			    handleRestoreQueue();
+			}
+		    }}
+
 		    size={80}
 		/>
                 <SharedFullscreenPlayerSettings />

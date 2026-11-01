@@ -91,15 +91,17 @@ export const useLongPress = <T extends HTMLElement = HTMLElement>({
         [start],
     );
 
-    const handleTouchEnd = useCallback(() => {
-        const event = eventRef.current;
-        clear();
-        if (!longPressTriggeredRef.current && onClick && event) {
-            onClick(event);
-        }
-        onFinish?.(event || null);
-        longPressTriggeredRef.current = false;
-        eventRef.current = null;
+    const handleTouchEnd = useCallback(
+        (e: React.MouseEvent) => {
+	    if (e.cancelable) e.preventDefault();
+            const event = eventRef.current;
+            clear();
+            if (!longPressTriggeredRef.current && onClick && event) {
+                onClick(event);
+            }
+            onFinish?.(event || null);
+            longPressTriggeredRef.current = false;
+            eventRef.current = null;
     }, [clear, onClick, onFinish]);
 
     const handleTouchCancel = useCallback(() => {
