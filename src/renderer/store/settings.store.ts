@@ -2125,7 +2125,7 @@ const initialState: SettingsState = {
             enabled: false,
         },
         type: PlayerType.WEB,
-        webAudio: true,
+        webAudio: false,
     },
     queryBuilder: {
         tag: [],
