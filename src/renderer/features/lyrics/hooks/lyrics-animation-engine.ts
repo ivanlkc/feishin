@@ -19,7 +19,7 @@ const LINE_PRE_ANIMATING_CLASS = 'lyrics-line-pre-animating';
 const TIME_JUMP_THRESHOLD = 0.5;
 const CENTER_SCROLL_POS_RATIO = 0.5;
 const DEFAULT_ENDING_THRESHOLD = 0.5;
-const DEFAULT_LINE_LEAD_TIME_MS = 800;
+const DEFAULT_LINE_LEAD_TIME_MS = 400;
 const RICHSYNC_TIMING_OFFSET_MS = 150;
 const SYNC_TIMING_OFFSET_MS = 115;
 const HIGHLIGHT_DURATION_MULTIPLIER = 1.6;
@@ -604,9 +604,7 @@ export const tickLyricsAnimation = (state: AnimEngineState, opts: TickOptions): 
 
         const isScrollCandidate = playbackTimeSec >= time - leadTimeSec && isInLineWindow;
 
-        const isVisuallyActive = isLineSyncMode
-            ? playbackTimeSec >= time && isInLineWindow
-            : isScrollCandidate;
+        const isVisuallyActive = isScrollCandidate;
 
         if (isScrollCandidate) {
             activeElems.push(lineData);

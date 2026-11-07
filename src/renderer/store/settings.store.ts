@@ -2046,7 +2046,7 @@ const initialState: SettingsState = {
         fetch: true,
         follow: true,
         followScrollAlignment: 0,
-        lineLeadTimeMs: 800,
+        lineLeadTimeMs: 400,
         preferLocalLyrics: true,
         showMatch: false,
         showProvider: false,
@@ -2057,11 +2057,11 @@ const initialState: SettingsState = {
     },
     lyricsDisplay: {
         default: {
-            fontSize: 24,
-            fontSizeUnsync: 24,
+            fontSize: 40,
+            fontSizeUnsync: 30,
             gap: 24,
             gapUnsync: 24,
-            opacityNonActive: 0.2,
+            opacityNonActive: 0.45,
             paddingLeft: 0,
             paddingRight: 0,
             scaleNonActive: 0.95,
