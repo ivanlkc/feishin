@@ -2061,10 +2061,10 @@ const initialState: SettingsState = {
             fontSizeUnsync: 30,
             gap: 24,
             gapUnsync: 24,
-            opacityNonActive: 0.45,
+            opacityNonActive: 0.6,
             paddingLeft: 0,
             paddingRight: 0,
-            scaleNonActive: 0.95,
+            scaleNonActive: 0.9,
         },
     },
     playback: {
